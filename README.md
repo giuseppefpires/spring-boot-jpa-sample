@@ -1,7 +1,7 @@
 Author: Giuseppe Fregapane Pires - giuseppefpires@gmail.com
 
 ### Description
-Simple example of Sring boot with Jpa
+Simple example of Sring boot with Spring Data JPA
 
 ### Building and Running
 In order to build and run the solution you will need JDK 8+ and Maven installed. Then, follow the steps: 
