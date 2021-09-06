@@ -29,8 +29,8 @@ public class PersonController {
 
     @GetMapping("{id}")
     public PersonDTO findById(@PathVariable Long id) {
-        Optional<PersonDTO> Person = service.findById(id);
-        return Person.orElseThrow(() -> new ResponseStatusException(NOT_FOUND,
+        Optional<PersonDTO> person = service.findById(id);
+        return person.orElseThrow(() -> new ResponseStatusException(NOT_FOUND,
                 "Unable to find the Person " + id));
     }
 

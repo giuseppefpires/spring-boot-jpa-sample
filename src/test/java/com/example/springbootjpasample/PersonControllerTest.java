@@ -17,7 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PersonControllerTest {
+class PersonControllerTest {
     @Autowired
     private TestRestTemplate template;
 
@@ -25,7 +25,7 @@ public class PersonControllerTest {
     private int port;
 
     @Test
-    public void shouldInsert() {
+    void shouldInsert() {
         PersonDTO personDTO = getPersonDTO();
         PersonDTO dto = this.template.postForObject(getUrl(), personDTO, PersonDTO.class);
 
@@ -37,7 +37,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void shouldFindById() {
+    void shouldFindById() {
         PersonDTO personDTO = this.template.postForObject(getUrl(), getPersonDTO(), PersonDTO.class);
         PersonDTO dto = this.template.getForObject(getUrl() + personDTO.getId(), PersonDTO.class);
         Assertions.assertNotNull(dto.getId());
@@ -47,14 +47,14 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void shouldReturnNotFound() {
+    void shouldReturnNotFound() {
         ResponseEntity<PersonDTO> responseEntity = this.template.getForEntity(getUrl() + Long.MAX_VALUE,
                 PersonDTO.class);
         Assertions.assertEquals(HttpStatus.NOT_FOUND.value(), responseEntity.getStatusCodeValue());
     }
 
     @Test
-    public void shouldUpdate() {
+    void shouldUpdate() {
         PersonDTO dto = this.template.postForObject(getUrl(), getPersonDTO(), PersonDTO.class);
         dto.setName("Update");
         ResponseEntity<PersonDTO> entity = this.template.exchange(getUrl() + dto.getId(),
@@ -69,7 +69,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void shouldRemove() {
+    void shouldRemove() {
         PersonDTO PersonDTO = this.template.postForObject(getUrl(), getPersonDTO(), PersonDTO.class);
         ResponseEntity<PersonDTO> response = this.template.getForEntity(getUrl() + PersonDTO.getId(),
                 PersonDTO.class);
@@ -82,7 +82,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void shouldFindAllByDefaultValues() {
+    void shouldFindAllByDefaultValues() {
         for (int index = 0; index < 20; index++) {
             this.template.postForObject(getUrl(), getPersonDTO(), PersonDTO.class);
         }
@@ -95,7 +95,7 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void shouldFindAllOverWriteValues() {
+    void shouldFindAllOverWriteValues() {
         for (int index = 0; index < 20; index++) {
             this.template.postForObject(getUrl(), getPersonDTO(), PersonDTO.class);
         }

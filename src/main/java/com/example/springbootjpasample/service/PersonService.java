@@ -40,16 +40,16 @@ public class PersonService {
     }
 
     public PersonDTO insert(PersonDTO dto) {
-        Person Person = mapper.toEntity(dto);
-        return mapper.toDTO(repository.save(Person));
+        Person person = mapper.toEntity(dto);
+        return mapper.toDTO(repository.save(person));
     }
 
     public PersonDTO update(Long id, PersonDTO dto) {
-        Person Person = repository.findById(id)
+        Person person = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Person does not find with the id " + id));
-        Person.update(mapper.toEntity(dto));
-        repository.save(Person);
-        return mapper.toDTO(Person);
+        person.update(mapper.toEntity(dto));
+        repository.save(person);
+        return mapper.toDTO(person);
     }
 
     public void delete(Long id) {
